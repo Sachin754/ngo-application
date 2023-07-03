@@ -1,0 +1,66 @@
+.header {
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+  }
+  
+  .logo img {
+    width: 150px;
+    height: 100px;
+    background-color: transparent;
+    margin-right: 10px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+
+.name {
+    font-weight: bold;
+    color: #683d4a;
+  }
+  
+  .menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .menu li {
+    display: inline-block;
+    margin-left: 10px;
+  }
+  
+  .menu li:first-child {
+    margin-left: 0;
+  }
+  
+  .menu li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #333; /* Adjust the link color */
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .menu li a:hover {
+    background-color: #ddd; /* Adjust the hover background color */
+  }
+  
+  .donate-btn {
+    margin-left: 10px;
+  }
+  
+  .donate-link {
+    background-color: orange;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 3px;
+    text-decoration: none;
+  }
+  
