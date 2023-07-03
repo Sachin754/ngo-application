@@ -14,8 +14,9 @@ const Donate = () => {
             <p><strong>Account No:</strong> &nbsp; 5110638393733389</p>
             <p><strong>IFSC Code:</strong> &nbsp; HDFC0000789</p>
             <p><strong>Bank Name:</strong> &nbsp; HDFC Bank</p>
+            <p><strong>For More:</strong> &nbsp; 01252-563738,8700078324</p>
           </div>
-          <button type="submit">Donate</button>
+       
         </form>
       </div>
     </>

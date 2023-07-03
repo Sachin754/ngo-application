@@ -5,12 +5,19 @@ import Header from "../Header/Header";
 import React, { useState } from 'react';
 import './CreateCampaign.css';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const CreateCampaign = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [city,setCity] = useState('')
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,16 +27,20 @@ const CreateCampaign = () => {
       name,
       description,
       startDate,
-      endDate
+      endDate,
+      city
     };
 
     console.log("formdata",formData)
 
     // Make the POST request using axios
-    axios.post('http://localhost:49318/createcampaign',  formData)
+    axios.post('http://localhost:60181/createcampaign',  formData)
       .then(response => {
         // Handle the response if needed
         console.log('Campaign created successfully:', response.data);
+        toast.success('Campaign created successfully!');
+        navigate('/active-campaign');
+       
       })
       .catch(error => {
         // Handle any errors
@@ -39,7 +50,8 @@ const CreateCampaign = () => {
 
   return (
     <>
-     <Header/>        
+     <Header/>    
+     <ToastContainer />    
     <div className="form-container">
       <h2>Create Campaign</h2>
       <form className="campaign-form" onSubmit={handleSubmit}>
@@ -86,6 +98,17 @@ const CreateCampaign = () => {
             required
           />
         </div>
+        <div className="form-group">
+          <label htmlFor="city">City:</label>
+          <input
+            type="text"
+            id="city"
+            name="city"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            required
+          />
+        </div>
         <button type="submit">Create</button>
       </form>
     </div>
@@ -96,14 +119,3 @@ const CreateCampaign = () => {
 export default CreateCampaign;
 
 
-// const CreateCampaign = () => {
-
-//     return(
-//         <>
-//         <Header/>        
-       
-//         </>
-//     )
-// }
-
-// export default CreateCampaign

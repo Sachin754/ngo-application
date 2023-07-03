@@ -1,6 +1,8 @@
 let express = require('express');
 let cors = require ('cors')
 let https = require('https')
+var config = require('./dbconfig')
+const sql = require('mssql');
 let app = express();
 app.use(express.json());
 
@@ -20,10 +22,49 @@ var allowCrossDomain=function(req,res,next){
 app.use(cors(corsOptions));
 
 
-app.post('/createcampaign', async(req,res) =>{
-    console.log("api called",req.body)
-    res.status(200).json({ message: 'Campaign created successfully' });
-  })
+
+
+app.post('/createcampaign', async (req, res) => {
+  console.log("api called", req.body);
+
+  let data = req.body;
+  console.log("daaataaa", data);
+ // let startdate = new Date(data.StartDate);
+ // let enddate = new Date(data.EndDate);
+ 
+
+  try {
+      let pool = await sql.connect(config);
+      await pool.request()
+          .input("campaignName", sql.NVarChar, data.name)
+          .input("Description", sql.NVarChar, data.description)
+          .input("StartDate", sql.DateTime, data.startDate)
+          .input("EndDate", sql.DateTime, data.endDate)
+          .input("City", sql.NVarChar, data.city)
+          .query(`INSERT INTO CreateCampaign (campaignName, Description, StartDate, EndDate, City)
+                   VALUES (@campaignName, @Description, @StartDate, @EndDate, @City)`)
+
+      res.status(200).json({ message: 'Campaign created successfully' });
+  } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: 'An error occurred while creating the campaign' });
+  }
+});
+
+app.get('/activecampaign', async (req, res) => {
+  try {
+    let pool = await sql.connect(config);
+    const result = await pool.request()
+      .query('SELECT * FROM CreateCampaign');
+      
+    res.status(200).json(result.recordset);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'An error occurred while retrieving active campaigns' });
+  }
+});
+
+
 
 
 
