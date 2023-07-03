@@ -20,5 +20,9 @@
   .campaign-heading {
     text-align: center;
   }
+  .no-campaigns-heading {
+    text-align: center;
+    color: green;
+  }
   
   

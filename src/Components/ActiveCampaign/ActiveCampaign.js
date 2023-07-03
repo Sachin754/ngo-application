@@ -8,7 +8,7 @@ const ActiveCampaign = () => {
   useEffect(() => {
     // Make the GET request using axios
     axios
-      .get("http://localhost:60181/activecampaign")
+      .get("http://localhost:50556/activecampaign")
       .then(response => {
         // Handle the response data
         setCampaigns(response.data);
@@ -27,23 +27,27 @@ const ActiveCampaign = () => {
 
       <div className="campaign-container">
         <h1 className="campaign-heading">Active Campaign</h1>
-        <div className="campaign-cards">
-          {campaigns.map(campaign => (
-            <div className="campaign-card" key={campaign.id}>
-              <h3 className="highlight">Campaign Name: {campaign.campaignName}</h3>
-              <p className="description">Description: {campaign.Description}</p>
-              <p className="info">
-                City: <span className="highlight">{campaign.City}</span>
-              </p>
-              <p className="info">
-                Start Date: <span className="highlight">{new Date(campaign.StartDate).toLocaleDateString()}</span>
-              </p>
-              <p className="info">
-                End Date: <span className="highlight">{new Date(campaign.EndDate).toLocaleDateString()}</span>
-              </p>
-            </div>
-          ))}
-        </div>
+        {campaigns.length === 0 ? (
+          <h2 className="no-campaigns-heading">No active campaigns available now</h2>
+        ) : (
+          <div className="campaign-cards">
+            {campaigns.map(campaign => (
+              <div className="campaign-card" key={campaign.id}>
+                <h3 className="highlight">Campaign Name: {campaign.campaignName}</h3>
+                <p className="description">Description: {campaign.Description}</p>
+                <p className="info">
+                  City: <span className="highlight">{campaign.City}</span>
+                </p>
+                <p className="info">
+                  Start Date: <span className="highlight">{new Date(campaign.StartDate).toLocaleDateString()}</span>
+                </p>
+                <p className="info">
+                  End Date: <span className="highlight">{new Date(campaign.EndDate).toLocaleDateString()}</span>
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </>
   );

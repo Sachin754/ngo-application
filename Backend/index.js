@@ -51,6 +51,31 @@ app.post('/createcampaign', async (req, res) => {
   }
 });
 
+app.post('/donationamount', async (req, res) => {
+  console.log("api called", req.body);
+
+  let data = req.body;
+  console.log("daaataaa", data);
+
+  try {
+    let pool = await sql.connect(config);
+    await pool.request()
+      .input("firstName", sql.NVarChar, data.firstName)
+      .input("lastName", sql.NVarChar, data.selectedCampaign)
+      .input("email", sql.NVarChar, data.email)
+      .input("phone", sql.NVarChar, data.phone)
+      .input("donationAmount", sql.Decimal, data.amount)
+      .query(`INSERT INTO DonationAmount (firstName, lastName, email, phone, donationAmount)
+               VALUES (@firstName, @lastName, @email, @phone, @donationAmount)`);
+
+    res.status(200).json({ message: 'Donation amount saved successfully' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'An error occurred while saving the donation amount' });
+  }
+});
+
+
 app.get('/activecampaign', async (req, res) => {
   try {
     let pool = await sql.connect(config);
