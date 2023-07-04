@@ -35,7 +35,7 @@ const Donate = () => {
     };
   
     // Make the POST request using axios
-    axios.post('http://localhost:50556/donationamount', formData)
+    axios.post('http://localhost:50575/donationamount', formData)
       .then(response => {
         // Handle the response if needed
         console.log('Donation amount posted successfully:', response.data);
@@ -54,7 +54,7 @@ const Donate = () => {
   useEffect(() => {
     // Make the GET request using axios
     axios
-      .get("http://localhost:50556/activecampaign")
+      .get("http://localhost:50575/activecampaign")
       .then(response => {
         // Handle the response data
         setCampaigns(response.data);

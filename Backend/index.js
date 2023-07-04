@@ -89,6 +89,22 @@ app.get('/activecampaign', async (req, res) => {
   }
 });
 
+app.post('/getdonationdetails', async (req, res) => {
+  let data = req.body;
+  console.log("daaataaa", data);
+  try {
+    let pool = await sql.connect(config);
+    const result = await pool.request()
+      .input("lastName", sql.NVarChar, data.campaignName)
+      .query('SELECT * FROM DonationAmount WHERE lastName = @lastName');
+      
+    res.status(200).json(result.recordset);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'An error occurred while retrieving active campaigns' });
+  }
+});
+
 
 
 

@@ -1,14 +1,28 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 import Header from "../Header/Header";
 import "./ActiveCampaign.css";
 
 const ActiveCampaign = () => {
   const [campaigns, setCampaigns] = useState([]);
+  const navigate = useNavigate();
+
+ 
+
+  console.log("active campaigns are", campaigns);
+
+  const handleContributorDetailClick = () => {
+    navigate("/contribution");
+
+
+   
+  };
+
   useEffect(() => {
     // Make the GET request using axios
     axios
-      .get("http://localhost:50556/activecampaign")
+      .get("http://localhost:50575/activecampaign")
       .then(response => {
         // Handle the response data
         setCampaigns(response.data);
@@ -18,8 +32,6 @@ const ActiveCampaign = () => {
         console.error("Error retrieving active campaigns:", error);
       });
   }, []);
-
-  console.log("active campaigns are", campaigns);
 
   return (
     <>
@@ -44,6 +56,9 @@ const ActiveCampaign = () => {
                 <p className="info">
                   End Date: <span className="highlight">{new Date(campaign.EndDate).toLocaleDateString()}</span>
                 </p>
+                <button className="contributor-detail-button" onClick={handleContributorDetailClick}>
+                  Contributor Detail
+                </button>
               </div>
             ))}
           </div>

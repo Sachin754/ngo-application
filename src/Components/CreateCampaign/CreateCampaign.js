@@ -34,7 +34,7 @@ const CreateCampaign = () => {
     console.log("formdata",formData)
 
     // Make the POST request using axios
-    axios.post('http://localhost:50556/createcampaign',  formData)
+    axios.post('http://localhost:62777/createcampaign',  formData)
       .then(response => {
         // Handle the response if needed
         console.log('Campaign created successfully:', response.data);

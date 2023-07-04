@@ -1,0 +1,82 @@
+.contribution-container {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .select-container {
+    margin-top: 1rem;
+  }
+  
+  .campaign-dropdown {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    outline: none;
+    width: 200px;
+  }
+  
+  h1 {
+    margin-bottom: 1rem;
+  }
+  
+  label {
+    margin-right: 0.5rem;
+    font-weight: bold;
+  }
+  
+
+  /* Contribution.css */
+.contribution-container {
+    text-align: center;
+  }
+  
+  .select-container {
+    margin-bottom: 20px;
+  }
+  
+  .donation-details-container {
+    margin-top: 30px;
+  }
+  
+  .donation-details-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .donation-details-table th,
+  .donation-details-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .donation-details-table th {
+    background-color: #f0f0f0;
+  }
+  
+  .donation-details-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .donation-details-table tbody tr:hover {
+    background-color: #eaf6fd;
+  }
+
+  .total-donation {
+    margin-top: 20px;
+    text-align: right;
+    font-weight: bold;
+  }
+  
+  .total-donation span:first-child {
+    margin-right: 10px;
+  }
+  
+  .total-donation span:last-child {
+    color: #ff0000;
+  }
+  
+
+  
